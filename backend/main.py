@@ -27,14 +27,15 @@ async def hand_landmarks(websocket):
             # Get the landmark list (list of 21 lists of landmark cords)
             lmList = hand["lmList"]
             data["landmarks"] = lmList
+            print(lmList)
 
         cv2.imshow("Image", img)  # imshow short for image show, "Image" is window name, img is images
         cv2.waitKey(1)  # Make video refresh every 1 ms
 
         await websocket.send(json.dumps(data))
-        await asyncio.sleep(0.02)
+        await asyncio.sleep(0.03)
 
-        
+
 async def main():
     async with websockets.serve(hand_landmarks, "localhost", 3000):
         await asyncio.Future()
