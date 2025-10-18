@@ -1,6 +1,11 @@
 import { OrbitControls } from "@react-three/drei"
 import "@react-three/fiber"
 
+const socket = new WebSocket("ws://localhost:3000")
+
+socket.addEventListener("message", (event) => {  // message event type means that code executes when data is received through websocket
+    console.log(event.data)
+})
 
 export default function Experience() {
     return (
