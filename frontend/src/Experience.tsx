@@ -4,7 +4,7 @@ import "@react-three/fiber"
 import { Line } from "@react-three/drei"
 
 interface landmarkData {
-    landmarks: number[][]; // declare the type that landmarks can have two array (for indexing) with numbers as each element
+    landmarks: number[][];
 }
 
 // define a type cords that takes in 3 values as an array
