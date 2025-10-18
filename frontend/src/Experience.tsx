@@ -6,10 +6,12 @@ export default function Experience() {
     return (
         <>
             <OrbitControls></OrbitControls>
-            <mesh position-y={-0.5} castShadow>
-                <boxGeometry></boxGeometry>
-                <meshStandardMaterial color={"red"}></meshStandardMaterial>
-            </mesh>
+            {[...Array(21)].map((_, index) => // map iterates through undefined elements, not empty elements
+                <mesh scale={0.5} position-x={index*2}>
+                    <sphereGeometry></sphereGeometry>
+                    <meshStandardMaterial color={"blue"}></meshStandardMaterial>
+                </mesh>
+            )}
 
             <mesh position-y={-1} scale={10} rotation-x={-Math.PI/2} receiveShadow>
                 <planeGeometry></planeGeometry>
