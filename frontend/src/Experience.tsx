@@ -2,6 +2,7 @@ import { OrbitControls } from "@react-three/drei"
 import { useEffect, useState } from "react"
 import "@react-three/fiber"
 import { Line } from "@react-three/drei"
+import { Physics, RigidBody } from "@react-three/rapier"
 
 interface landmarkData {
     landmarks: number[][];
@@ -90,10 +91,22 @@ export default function Experience() {
                 )}
             </group>
 
-            <mesh position-y={-1} scale={10} rotation-x={-Math.PI/2} receiveShadow>
-                <planeGeometry></planeGeometry>
-                <meshStandardMaterial color={"white"}></meshStandardMaterial>
-            </mesh>
+            <Physics>
+                <RigidBody>
+                    <mesh castShadow position-y={2}>
+                        <sphereGeometry></sphereGeometry>
+                        <meshStandardMaterial color={"mediumblue"}></meshStandardMaterial>
+                    </mesh>
+                </RigidBody>
+
+                <RigidBody type={"fixed"}>
+                    <mesh position-y={-1} scale={10} rotation-x={-Math.PI/2} receiveShadow>
+                        <planeGeometry></planeGeometry>
+                        <meshStandardMaterial color={"white"}></meshStandardMaterial>
+                    </mesh>
+                </RigidBody>
+
+            </Physics>
 
             <directionalLight position={[2,2,2]} intensity={2.8} castShadow></directionalLight>
             <ambientLight></ambientLight>

@@ -27,7 +27,6 @@ async def hand_landmarks(websocket):
             # Get the landmark list (list of 21 lists of landmark cords)
             lmList = hand["lmList"]
             data["landmarks"] = lmList
-            print(lmList)
 
         cv2.imshow("Image", img)  # imshow short for image show, "Image" is window name, img is images
         cv2.waitKey(1)  # Make video refresh every 1 ms
