@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 
-interface landmarkData {
+type landmarkData = {
     landmarks: number[][]
 }
 
