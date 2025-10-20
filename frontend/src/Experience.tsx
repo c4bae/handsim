@@ -9,7 +9,7 @@ export default function Experience() {
     return (
         <>
             <OrbitControls></OrbitControls>
-            <Physics>
+            <Physics debug>
                 <Hand></Hand>
 
                 <RigidBody>
