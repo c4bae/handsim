@@ -1,6 +1,7 @@
 import useFrameData from "../Hooks/useFrameData";
 import React from "react";
 import { useState, useEffect } from "react";
+import "../style.css"
 
 // Returns the img component using the img string from ref obtained by useFrameData.ts
 export default function Video() {
@@ -19,7 +20,7 @@ export default function Video() {
     }, [frameData])
 
     if (imgData == undefined) {
-        return null
+        return <p><strong>Video not found.</strong> Is main.py running?</p>
     }
 
     return (
