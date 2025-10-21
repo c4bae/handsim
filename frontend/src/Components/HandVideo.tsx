@@ -2,11 +2,18 @@ import useFrameData from "../Hooks/useFrameData";
 import React from "react";
 import { useState, useEffect } from "react";
 import "../style.css"
+import { useControls } from "leva";
 
 // Returns the img component using the img string from ref obtained by useFrameData.ts
 export default function Video() {
     const frameData: React.RefObject<string | undefined> = useFrameData()
     const [imgData, setImgData] = useState<string | undefined>(undefined)
+
+    const {VideoOn} = useControls({
+        VideoOn: {
+            value: true
+        }
+    })
 
     // Use an interval to continuously update the image frame
     useEffect(() => {
@@ -19,11 +26,14 @@ export default function Video() {
 
     }, [frameData])
 
-    if (imgData == undefined) {
+    if (imgData == undefined && VideoOn) {
         return <p><strong>Video not found.</strong> Is main.py running?</p>
     }
 
+    else if(VideoOn)
     return (
         <img src={"data:image/jpg;base64,"+ imgData} style={{width: "30%", position: "fixed"}}></img>
     )
+
+    else return null
 }
