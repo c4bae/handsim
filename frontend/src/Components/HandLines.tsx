@@ -78,7 +78,7 @@ export default function HandLines({landMarkData}: landmarkData) {
                     }
                     // Ensure spheres at the top of each "finger" do not have a connecting line
                     if (index % 4 != 0)
-                    return <Line points={[[x,y,z],[nextX,nextY,nextZ]]} lineWidth={5} color={"blue"}></Line>
+                    return <Line key={index} points={[[x,y,z],[nextX,nextY,nextZ]]} lineWidth={5} color={"blue"}></Line>
                 }    
             })}
             {}
