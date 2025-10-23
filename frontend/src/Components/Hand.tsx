@@ -8,6 +8,7 @@ import HandLines from "./HandLines";
 interface handLandmarkData {
     landmarks: number[][]
 }
+
 export default function Hand() {
     const handLandmarkRef = useHandData()
     const spheresRef = useRef<React.RefObject<RapierRigidBody | null>[]>([])
@@ -28,7 +29,7 @@ export default function Hand() {
 
             landmarkData.current["landmarks"].forEach((list, index) => {
                     const x = -(list[0] - 1280/2) / (1280/2) * 3
-                    const y = -(list[1] - 720/2) / (720/2) + 1
+                    const y = -(list[1] - 720/2) / (720/2) + 0.2
                     const z = list[2] / 200
 
                     // Update the position of each landmark using kinematic translation
@@ -40,8 +41,8 @@ export default function Hand() {
     return (
         <>
             {[...Array(21)].map((_, index) =>
-                <RigidBody key={index} ref={spheresRef.current[index]} type={"kinematicPosition"}>
-                    <mesh scale={0.09} castShadow>
+                <RigidBody colliders={"ball"} key={index} ref={spheresRef.current[index]} type={"kinematicPosition"}>
+                    <mesh scale={0.06} castShadow>
                         <sphereGeometry></sphereGeometry>
                         <meshStandardMaterial color={"blue"}></meshStandardMaterial>
                     </mesh>

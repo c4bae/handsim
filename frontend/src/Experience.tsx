@@ -2,18 +2,22 @@ import { OrbitControls } from "@react-three/drei"
 import "@react-three/fiber"
 import { Physics, RigidBody } from "@react-three/rapier"
 import Hand from "./Components/Hand"
-
+import Projectile from "./Components/Projectile"
+import JengaTower from "./Components/JengaTower"
 
 export default function Experience() {
 
     return (
         <>
             <OrbitControls></OrbitControls>
-            <Physics debug>
+
+            <Physics timeStep={"vary"}>
+                <JengaTower></JengaTower>
+                <Projectile></Projectile>
                 <Hand></Hand>
 
-                <RigidBody>
-                    <mesh castShadow position-y={2} position-z={-1} scale={0.5}>
+                <RigidBody colliders={"ball"}>
+                    <mesh castShadow position-y={0} position-z={-3} scale={0.4}>
                         <sphereGeometry></sphereGeometry>
                         <meshStandardMaterial color={"mediumblue"}></meshStandardMaterial>
                     </mesh>
