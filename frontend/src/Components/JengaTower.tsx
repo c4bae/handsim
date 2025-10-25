@@ -1,15 +1,26 @@
 import { RigidBody } from "@react-three/rapier"
+import { useState } from "react";
 
 export default function JengaTower() {
+    const [key, setKey] = useState<number>(0)
     const towerHeight = 10;
 
+    document.addEventListener("visibilitychange", () => {
+        if(document.visibilityState == "visible") {
+            console.log("tab is shown")
+            setKey((key) => key + 1)
+        }
+        else {
+            console.log("tab is gone")
+        }
+    })
     return (
-        <group position-z={2}>
+        <group position-z={2} key={key}>
             {[...Array(towerHeight)].map((_, index) => {
                 // Two cases (index % 2 == 0) (index % 2 != 0) allows for rotated layers
                 if(index % 2 == 0) {
                     return (
-                        <group position-y={index/6}>
+                        <group position-y={index - index*0.55} key={index}>
                             <RigidBody>
                                 <mesh position-x={0} scale={[0.3,0.3,0.9]}>
                                     <boxGeometry></boxGeometry>
@@ -33,7 +44,7 @@ export default function JengaTower() {
                 }
                 else {
                     return (
-                        <group position-y={index/6} rotation-y={Math.PI/2}>
+                        <group position-y={index - index*0.55} rotation-y={Math.PI/2}>
                             <RigidBody>
                                 <mesh position-x={-0.31} position-z={0.3} scale={[0.3,0.3,0.9]}>
                                     <boxGeometry></boxGeometry>
