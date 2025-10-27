@@ -4,6 +4,7 @@ import { useRef } from "react";
 import React from "react";
 import { RigidBody, RapierRigidBody } from "@react-three/rapier";
 import HandLines from "./HandLines";
+import PointerLine from "./PointerLine"
 
 interface handLandmarkData {
     landmarks: number[][]
@@ -49,6 +50,7 @@ export default function Hand() {
                 </RigidBody>
             )}
             <HandLines landMarkData={landmarkData}></HandLines>
+            <PointerLine landMarkData={landmarkData}></PointerLine>
         </>
     )
 }
