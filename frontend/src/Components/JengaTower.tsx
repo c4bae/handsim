@@ -20,23 +20,23 @@ export default function JengaTower() {
                 // Two cases (index % 2 == 0) (index % 2 != 0) allows for rotated layers
                 if(index % 2 == 0) {
                     return (
-                        <group position-y={index - index*0.55} key={index}>
+                        <group position-y={index - index*0.3} key={index}>
                             <RigidBody>
-                                <mesh position-x={0} scale={[0.3,0.3,0.9]} layers={1}>
+                                <mesh position-x={0} scale={[0.6,0.6,1.8]} layers={1} castShadow receiveShadow>
                                     <boxGeometry></boxGeometry>
-                                    <meshStandardMaterial color={"red"}></meshStandardMaterial>
+                                    <meshStandardMaterial color={"#c2974e"}></meshStandardMaterial>
                                 </mesh>
                             </RigidBody>
                             <RigidBody>
-                                <mesh position-x={0.31} scale={[0.3,0.3,0.9]} layers={1}>
+                                <mesh position-x={0.62} scale={[0.6,0.6,1.8]} layers={1} castShadow receiveShadow>
                                     <boxGeometry></boxGeometry>
-                                    <meshStandardMaterial color={"red"}></meshStandardMaterial>
+                                    <meshStandardMaterial color={"#c2974e"}></meshStandardMaterial>
                                 </mesh>
                             </RigidBody>
                             <RigidBody>
-                                <mesh position-x={0.62} scale={[0.3,0.3,0.9]} layers={1}>
+                                <mesh position-x={1.24} scale={[0.6,0.6,1.8]} layers={1} castShadow receiveShadow>
                                     <boxGeometry></boxGeometry>
-                                    <meshStandardMaterial color={"red"}></meshStandardMaterial>
+                                    <meshStandardMaterial color={"#c2974e"}></meshStandardMaterial>
                                 </mesh>
                             </RigidBody>
                         </group>
@@ -44,23 +44,23 @@ export default function JengaTower() {
                 }
                 else {
                     return (
-                        <group position-y={index - index*0.55} rotation-y={Math.PI/2}>
+                        <group position-y={index - index*0.3} rotation-y={Math.PI/2}>
                             <RigidBody>
-                                <mesh position-x={-0.31} position-z={0.3} scale={[0.3,0.3,0.9]} layers={1}>
+                                <mesh position-x={-0.62} position-z={0.6} scale={[0.6,0.6,1.8]} layers={1} castShadow receiveShadow>
                                     <boxGeometry></boxGeometry>
-                                    <meshStandardMaterial color={"red"}></meshStandardMaterial>
+                                    <meshStandardMaterial color={"#c2974e"}></meshStandardMaterial>
                                 </mesh>
                             </RigidBody>
                             <RigidBody>
-                                <mesh position-x={0} position-z={0.3} scale={[0.3,0.3,0.9]} layers={1}>
+                                <mesh position-x={0} position-z={0.6} scale={[0.6,0.6,1.8]} layers={1} castShadow receiveShadow>
                                     <boxGeometry></boxGeometry>
-                                    <meshStandardMaterial color={"red"}></meshStandardMaterial>
+                                    <meshStandardMaterial color={"#c2974e"}></meshStandardMaterial>
                                 </mesh>
                             </RigidBody>
                             <RigidBody>
-                                <mesh position-x={0.31} position-z={0.3} scale={[0.3,0.3,0.9]} layers={1}>
+                                <mesh position-x={0.62} position-z={0.6} scale={[0.6,0.6,1.8]} layers={1} castShadow receiveShadow>
                                     <boxGeometry></boxGeometry>
-                                    <meshStandardMaterial color={"red"}></meshStandardMaterial>
+                                    <meshStandardMaterial color={"#c2974e"}></meshStandardMaterial>
                                 </mesh>
                             </RigidBody>
                         </group>

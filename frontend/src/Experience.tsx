@@ -10,18 +10,19 @@ export default function Experience() {
     return (
         <>
             <OrbitControls></OrbitControls>
+            <axesHelper args={[5]}></axesHelper>
 
             <Physics timeStep={"vary"}>
                 <JengaTower></JengaTower>
                 <Projectile></Projectile>
                 <Hand></Hand>
 
-                <RigidBody colliders={"ball"}>
+                {/* <RigidBody colliders={"ball"}>
                     <mesh castShadow position-y={0} position-z={-3} scale={0.4}>
                         <sphereGeometry></sphereGeometry>
                         <meshStandardMaterial color={"mediumblue"}></meshStandardMaterial>
                     </mesh>
-                </RigidBody>
+                </RigidBody> */}
 
                 <RigidBody type={"fixed"}>
                     <mesh position-y={-1} scale={10} rotation-x={-Math.PI/2} receiveShadow>
@@ -32,8 +33,8 @@ export default function Experience() {
             </Physics>
 
 
-            <directionalLight position={[2,2,2]} intensity={2.8} castShadow></directionalLight>
-            <ambientLight></ambientLight>
+            <directionalLight position={[2,2,2]} intensity={4.8} shadow-normalBias={ 0.05 } castShadow></directionalLight>
+            <ambientLight intensity={3}></ambientLight>
         </>
     )
 }
