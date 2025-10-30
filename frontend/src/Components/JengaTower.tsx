@@ -1,7 +1,9 @@
 import { RigidBody } from "@react-three/rapier"
-import { useState } from "react";
+import { useEffect, useState, useRef } from "react";
+import { Group } from "three";
 
 export default function JengaTower() {
+    const tower = useRef<Group | null>(null)
     const [key, setKey] = useState<number>(0)
     const towerHeight = 10;
 
@@ -14,59 +16,74 @@ export default function JengaTower() {
             console.log("tab is gone")
         }
     })
+
+    useEffect(() => {
+        document.addEventListener("keydown", (event) => {
+            if(event.code == "KeyD" && tower.current) {
+                tower.current.rotation.y += Math.PI/64
+            }
+            else if(event.code == "KeyA" && tower.current) {
+                tower.current.rotation.y -= Math.PI/64
+            }
+        })
+
+    }, [])
+
     return (
-        <group position-z={-2} key={key}>
-            {[...Array(towerHeight)].map((_, index) => {
-                // Two cases (index % 2 == 0) (index % 2 != 0) allows for rotated layers
-                if(index % 2 == 0) {
-                    return (
-                        <group position-y={index - index*0.3} key={index}>
-                            <RigidBody>
-                                <mesh position-x={0} scale={[0.6,0.6,1.8]} layers={1} castShadow receiveShadow>
-                                    <boxGeometry></boxGeometry>
-                                    <meshStandardMaterial color={"#c2974e"}></meshStandardMaterial>
-                                </mesh>
-                            </RigidBody>
-                            <RigidBody>
-                                <mesh position-x={0.62} scale={[0.6,0.6,1.8]} layers={1} castShadow receiveShadow>
-                                    <boxGeometry></boxGeometry>
-                                    <meshStandardMaterial color={"#c2974e"}></meshStandardMaterial>
-                                </mesh>
-                            </RigidBody>
-                            <RigidBody>
-                                <mesh position-x={1.24} scale={[0.6,0.6,1.8]} layers={1} castShadow receiveShadow>
-                                    <boxGeometry></boxGeometry>
-                                    <meshStandardMaterial color={"#c2974e"}></meshStandardMaterial>
-                                </mesh>
-                            </RigidBody>
-                        </group>
-                    )
-                }
-                else {
-                    return (
-                        <group position-y={index - index*0.3} rotation-y={Math.PI/2}>
-                            <RigidBody>
-                                <mesh position-x={-0.62} position-z={0.6} scale={[0.6,0.6,1.8]} layers={1} castShadow receiveShadow>
-                                    <boxGeometry></boxGeometry>
-                                    <meshStandardMaterial color={"#c2974e"}></meshStandardMaterial>
-                                </mesh>
-                            </RigidBody>
-                            <RigidBody>
-                                <mesh position-x={0} position-z={0.6} scale={[0.6,0.6,1.8]} layers={1} castShadow receiveShadow>
-                                    <boxGeometry></boxGeometry>
-                                    <meshStandardMaterial color={"#c2974e"}></meshStandardMaterial>
-                                </mesh>
-                            </RigidBody>
-                            <RigidBody>
-                                <mesh position-x={0.62} position-z={0.6} scale={[0.6,0.6,1.8]} layers={1} castShadow receiveShadow>
-                                    <boxGeometry></boxGeometry>
-                                    <meshStandardMaterial color={"#c2974e"}></meshStandardMaterial>
-                                </mesh>
-                            </RigidBody>
-                        </group>
-                    )
-                }
-            })}
+        <group ref={tower} position={[0, 0, -2]}>
+            <group key={key} position={[-0.62, 0, 0]}>
+                {[...Array(towerHeight)].map((_, index) => {
+                    // Two cases (index % 2 == 0) (index % 2 != 0) allows for rotated layers
+                    if(index % 2 == 0) {
+                        return (
+                            <group position-y={index - index*0.3} key={index}>
+                                <RigidBody>
+                                    <mesh position-x={0} scale={[0.6,0.6,1.8]} layers={1} castShadow receiveShadow>
+                                        <boxGeometry></boxGeometry>
+                                        <meshStandardMaterial color={"#c2974e"}></meshStandardMaterial>
+                                    </mesh>
+                                </RigidBody>
+                                <RigidBody>
+                                    <mesh position-x={0.62} scale={[0.6,0.6,1.8]} layers={1} castShadow receiveShadow>
+                                        <boxGeometry></boxGeometry>
+                                        <meshStandardMaterial color={"#c2974e"}></meshStandardMaterial>
+                                    </mesh>
+                                </RigidBody>
+                                <RigidBody>
+                                    <mesh position-x={1.24} scale={[0.6,0.6,1.8]} layers={1} castShadow receiveShadow>
+                                        <boxGeometry></boxGeometry>
+                                        <meshStandardMaterial color={"#c2974e"}></meshStandardMaterial>
+                                    </mesh>
+                                </RigidBody>
+                            </group>
+                        )
+                    }
+                    else {
+                        return (
+                            <group position-y={index - index*0.3} rotation-y={Math.PI/2}>
+                                <RigidBody>
+                                    <mesh position-x={-0.62} position-z={0.6} scale={[0.6,0.6,1.8]} layers={1} castShadow receiveShadow>
+                                        <boxGeometry></boxGeometry>
+                                        <meshStandardMaterial color={"#c2974e"}></meshStandardMaterial>
+                                    </mesh>
+                                </RigidBody>
+                                <RigidBody>
+                                    <mesh position-x={0} position-z={0.6} scale={[0.6,0.6,1.8]} layers={1} castShadow receiveShadow>
+                                        <boxGeometry></boxGeometry>
+                                        <meshStandardMaterial color={"#c2974e"}></meshStandardMaterial>
+                                    </mesh>
+                                </RigidBody>
+                                <RigidBody>
+                                    <mesh position-x={0.62} position-z={0.6} scale={[0.6,0.6,1.8]} layers={1} castShadow receiveShadow>
+                                        <boxGeometry></boxGeometry>
+                                        <meshStandardMaterial color={"#c2974e"}></meshStandardMaterial>
+                                    </mesh>
+                                </RigidBody>
+                            </group>
+                        )
+                    }
+                })}
+            </group>
         </group>
     )
 }
