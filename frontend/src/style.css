@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Della+Respira&family=Italiana&family=Outfit:wght@100..900&display=swap');
+
 html,
 body,
 #root {
@@ -10,13 +12,23 @@ body,
     margin: 0;
 }
 
-p {
-    margin-left: 10px;
+h1 {
+    font-family: 'Italiana', Courier, monospace;
+    position: fixed;
+    margin-left: 1.5rem;
+    text-align: left;
+    z-index: 1;
+    color: #fff;
+    opacity: 0.5;
 }
 
-h1 {
+p {
+    font-family: 'Italiana', Courier, monospace;
     position: fixed;
-    left: 50%;
-    transform: translate(-50%);
-    text-align: center;
+    margin-left: 1.5rem;
+    margin-top: 6.5rem;
+    text-align: left;
+    z-index: 1;
+    color: #fff;
+    opacity: 0.5;
 }

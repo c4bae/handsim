@@ -4,14 +4,18 @@ import Experience from './Experience.tsx'
 // import HandVideo from "./Components/HandVideo.tsx"
 import "./style.css"
 import { Perf } from 'r3f-perf'
+import * as THREE from 'three'
 
 
 createRoot(document.getElementById('root')!).render(
   <>
-    {/* <h1>MediaPipe HandDetector Test in R3F<br></br>@c4bae</h1> */}
+   <h1>Jenga Sim in R3F using <br></br>OpenCV and MediaPipe @c4bae</h1>
+   <p>Only available through local hosting</p>
     {/* <HandVideo></HandVideo> */}
     {/* Enabling handvideo enables noticeable input lag */}
-    <Canvas shadows>
+    <Canvas shadows gl= {{
+                toneMapping: THREE.LinearToneMapping
+            }}>
         <Perf position="bottom-left"></Perf>
         <Experience></Experience>
     </Canvas>
