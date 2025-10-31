@@ -15,7 +15,7 @@ export default function Experience() {
 
             <Physics timeStep={"vary"}>
                 <JengaTower></JengaTower>
-                <Projectile></Projectile>
+                {/* <Projectile></Projectile> */}
                 <Hand></Hand>
 
                 {/* <RigidBody colliders={"ball"}>
