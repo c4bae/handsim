@@ -4,7 +4,7 @@ import asyncio, json, websockets
 import base64
 
 # Webcam
-cap = cv2.VideoCapture(0) # 0 refers to default webcam
+cap = cv2.VideoCapture(1)  # 0 refers to default webcam
 cap.set(3, 1280)  # Prop id 3 refers to video width
 cap.set(4, 720)  # Prop id 4 refers to video height
 
