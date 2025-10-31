@@ -15,6 +15,7 @@ export default function RaycasterSettings({landMarkData}: landmarkData) {
     const { raycaster, scene, camera } = useThree()
     const currentBlock = useRef<THREE.Object3D | null>(null)
     const blockFound = useRef<boolean>(false)
+    const blockPositionY = useRef<number | null>(null)
     const blocksLayer = new THREE.Layers()
 
     useEffect(() => {
@@ -25,6 +26,10 @@ export default function RaycasterSettings({landMarkData}: landmarkData) {
         window.addEventListener("keydown", (event) => {
             if(event.code == "Space" && currentBlock.current != null) {
                 blockFound.current = true
+
+                const worldPos = new THREE.Vector3()
+                currentBlock.current.getWorldPosition(worldPos)
+                blockPositionY.current = worldPos.y
             }
         })
     }, [])
@@ -69,7 +74,7 @@ export default function RaycasterSettings({landMarkData}: landmarkData) {
             // Align selected block to same y and z position of hand
             if(blockFound.current && currentBlock.current) {
                 currentBlock.current.position.z = x
-                currentBlock.current.position.y = y * 1.5
+                currentBlock.current.position.y = (y - blockPositionY.current!) * 1.5
             }
         }
     })
