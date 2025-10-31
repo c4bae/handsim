@@ -1,6 +1,7 @@
 import { RigidBody } from "@react-three/rapier"
 import { useEffect, useState, useRef } from "react";
 import { Group } from "three";
+import JengaBlock from "./JengaBlock";
 
 export default function JengaTower() {
     const tower = useRef<Group | null>(null)
@@ -37,50 +38,20 @@ export default function JengaTower() {
                     if(index % 2 == 0) {
                         return (
                             <group position-y={index - index*0.3} key={index}>
-                                <RigidBody>
-                                    <mesh position-x={0} scale={[0.6,0.6,1.8]} layers={1} castShadow receiveShadow>
-                                        <boxGeometry></boxGeometry>
-                                        <meshStandardMaterial color={"#c2974e"}></meshStandardMaterial>
-                                    </mesh>
-                                </RigidBody>
-                                <RigidBody>
-                                    <mesh position-x={0.62} scale={[0.6,0.6,1.8]} layers={1} castShadow receiveShadow>
-                                        <boxGeometry></boxGeometry>
-                                        <meshStandardMaterial color={"#c2974e"}></meshStandardMaterial>
-                                    </mesh>
-                                </RigidBody>
-                                <RigidBody>
-                                    <mesh position-x={1.24} scale={[0.6,0.6,1.8]} layers={1} castShadow receiveShadow>
-                                        <boxGeometry></boxGeometry>
-                                        <meshStandardMaterial color={"#c2974e"}></meshStandardMaterial>
-                                    </mesh>
-                                </RigidBody>
+                                <JengaBlock position-x={0} scale={[0.6,0.6,1.8]}></JengaBlock>
+                                <JengaBlock position-x={0.62} scale={[0.6,0.6,1.8]}></JengaBlock>
+                                <JengaBlock position-x={1.24} scale={[0.6,0.6,1.8]}></JengaBlock>
                             </group>
                         )
                     }
                     else {
                         return (
                             <group position-y={index - index*0.3} rotation-y={Math.PI/2}>
-                                <RigidBody>
-                                    <mesh position-x={-0.62} position-z={0.6} scale={[0.6,0.6,1.8]} layers={1} castShadow receiveShadow>
-                                        <boxGeometry></boxGeometry>
-                                        <meshStandardMaterial color={"#c2974e"}></meshStandardMaterial>
-                                    </mesh>
-                                </RigidBody>
-                                <RigidBody>
-                                    <mesh position-x={0} position-z={0.6} scale={[0.6,0.6,1.8]} layers={1} castShadow receiveShadow>
-                                        <boxGeometry></boxGeometry>
-                                        <meshStandardMaterial color={"#c2974e"}></meshStandardMaterial>
-                                    </mesh>
-                                </RigidBody>
-                                <RigidBody>
-                                    <mesh position-x={0.62} position-z={0.6} scale={[0.6,0.6,1.8]} layers={1} castShadow receiveShadow>
-                                        <boxGeometry></boxGeometry>
-                                        <meshStandardMaterial color={"#c2974e"}></meshStandardMaterial>
-                                    </mesh>
-                                </RigidBody>
+                                <JengaBlock position-x={-0.62} position-z={0.6}></JengaBlock>
+                                <JengaBlock position-x={0} position-z={0.6}></JengaBlock>
+                                <JengaBlock position-x={0.62} position-z={0.6}></JengaBlock>
                             </group>
-                        )
+                        )   
                     }
                 })}
             </group>
