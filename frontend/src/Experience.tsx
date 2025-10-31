@@ -9,6 +9,7 @@ export default function Experience() {
 
     return (
         <>
+            <color args={["#4a4a4a"]}attach="background"></color>
             <OrbitControls></OrbitControls>
             <axesHelper args={[5]}></axesHelper>
 
@@ -25,16 +26,17 @@ export default function Experience() {
                 </RigidBody> */}
 
                 <RigidBody type={"fixed"}>
-                    <mesh position-y={-1} scale={10} rotation-x={-Math.PI/2} receiveShadow>
+                    <mesh position-y={-1} scale={50} rotation-x={-Math.PI/2} receiveShadow>
                         <planeGeometry></planeGeometry>
-                        <meshStandardMaterial color={"white"}></meshStandardMaterial>
+                        <meshStandardMaterial color={"#0b0b0b"}> </meshStandardMaterial>
                     </mesh>
                 </RigidBody>
             </Physics>
 
 
-            <directionalLight position={[2,2,2]} intensity={4.8} shadow-normalBias={ 0.05 } castShadow></directionalLight>
-            <ambientLight intensity={3}></ambientLight>
+            <directionalLight position={[2,10,2]} intensity={5} shadow-normalBias={ 0.05 } castShadow></directionalLight>
+            <directionalLight position={[-3,10,-2]} intensity={5} shadow-normalBias={ 0.05 }></directionalLight>
+            <ambientLight intensity={4}></ambientLight>
         </>
     )
 }
