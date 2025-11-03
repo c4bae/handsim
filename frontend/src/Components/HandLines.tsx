@@ -26,11 +26,11 @@ export default function HandLines({landMarkData, zFactor}: handLinesProps) {
             {[...Array(20)].map((_, index) => {
                 if (stateLandMarkData) {
                     const x = -(stateLandMarkData["landmarks"][index][0] - 1280/2) / (1280/2) * 3
-                    const y = -(stateLandMarkData["landmarks"][index][1] - 720/2) / (720/2) * 1.5 + 3
+                    const y = -(stateLandMarkData["landmarks"][index][1] - 720/2) / (720/2) * 1.5 + 3.5
                     const z = stateLandMarkData["landmarks"][index][2] / 200 + zHandFactor
 
                     const nextX = -(stateLandMarkData["landmarks"][index+1][0] - 1280/2) / (1280/2) * 3
-                    const nextY = -(stateLandMarkData["landmarks"][index+1][1] - 720/2) / (720/2) * 1.5 + 3
+                    const nextY = -(stateLandMarkData["landmarks"][index+1][1] - 720/2) / (720/2) * 1.5 + 3.5
                     const nextZ = stateLandMarkData["landmarks"][index+1][2] / 200 + zHandFactor
 
                     if (index == 0) {
@@ -38,31 +38,31 @@ export default function HandLines({landMarkData, zFactor}: handLinesProps) {
                             <Line points={[[x,y,z],[nextX,nextY,nextZ]]} lineWidth={5} color={"blue"}></Line>
                             <Line points={[[x,y,z], [
                                 -(stateLandMarkData["landmarks"][index+1][0] - 1280/2) / (1280/2) * 3,
-                                -(stateLandMarkData["landmarks"][index+1][1] - 720/2) / (720/2) * 1.5 + 3,
+                                -(stateLandMarkData["landmarks"][index+1][1] - 720/2) / (720/2) * 1.5 + 3.5,
                                 stateLandMarkData["landmarks"][index+1][2] / 200 + zHandFactor
                             ]]} lineWidth={5} color={"blue"}> </Line>
 
                             <Line points={[[x,y,z], [
                                 -(stateLandMarkData["landmarks"][index+5][0] - 1280/2) / (1280/2) * 3,
-                                -(stateLandMarkData["landmarks"][index+5][1] - 720/2) / (720/2) * 1.5 + 3,
+                                -(stateLandMarkData["landmarks"][index+5][1] - 720/2) / (720/2) * 1.5 + 3.5,
                                 stateLandMarkData["landmarks"][index+5][2] / 200 + zHandFactor
                             ]]} lineWidth={5} color={"blue"}> </Line>
 
                             <Line points={[[x,y,z], [
                                 -(stateLandMarkData["landmarks"][index+9][0] - 1280/2) / (1280/2) * 3,
-                                -(stateLandMarkData["landmarks"][index+9][1] - 720/2) / (720/2) * 1.5 + 3,
+                                -(stateLandMarkData["landmarks"][index+9][1] - 720/2) / (720/2) * 1.5 + 3.5,
                                 stateLandMarkData["landmarks"][index+9][2] / 200 + zHandFactor
                             ]]} lineWidth={5} color={"blue"}> </Line>
 
                             <Line points={[[x,y,z], [
                                 -(stateLandMarkData["landmarks"][index+13][0] - 1280/2) / (1280/2) * 3,
-                                -(stateLandMarkData["landmarks"][index+13][1] - 720/2) / (720/2) * 1.5 + 3,
+                                -(stateLandMarkData["landmarks"][index+13][1] - 720/2) / (720/2) * 1.5 + 3.5,
                                 stateLandMarkData["landmarks"][index+13][2] / 200 + zHandFactor
                             ]]} lineWidth={5} color={"blue"}> </Line>
 
                             <Line points={[[x,y,z], [
                                 -(stateLandMarkData["landmarks"][index+17][0] - 1280/2) / (1280/2) * 3,
-                                -(stateLandMarkData["landmarks"][index+17][1] - 720/2) / (720/2) * 1.5 + 3,
+                                -(stateLandMarkData["landmarks"][index+17][1] - 720/2) / (720/2) * 1.5 + 3.5,
                                 stateLandMarkData["landmarks"][index+17][2] / 200 + zHandFactor
                             ]]} lineWidth={5} color={"blue"}> </Line>
                             </>)

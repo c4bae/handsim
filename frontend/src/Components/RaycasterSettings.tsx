@@ -7,11 +7,12 @@ interface handLandmarkData {
     landmarks: number[][]
 }
 
-type landmarkData = {
+type RaycasterSettingsProps = {
     landMarkData: React.RefObject<handLandmarkData | null>,
+    zFactor: React.RefObject<number>
 }
 
-export default function RaycasterSettings({landMarkData}: landmarkData) {
+export default function RaycasterSettings({landMarkData, zFactor}: RaycasterSettingsProps) {
     const { raycaster, scene, camera } = useThree()
     const currentBlock = useRef<THREE.Object3D | null>(null)
     const blockFound = useRef<boolean>(false)
@@ -39,12 +40,12 @@ export default function RaycasterSettings({landMarkData}: landmarkData) {
         const data = landMarkData.current
         if(data) {
             const x = -(data["landmarks"][7][0] - 1280/2) / (1280/2) * 3
-            const y = -(data["landmarks"][7][1] - 720/2) / (720/2) * 1.5 + 3
-            const z = data["landmarks"][7][2] / 200
+            const y = -(data["landmarks"][7][1] - 720/2) / (720/2) * 1.5 + 3.5
+            const z = data["landmarks"][7][2] / 200 + zFactor.current
 
             const farX = -(data["landmarks"][8][0] - 1280/2) / (1280/2) * 3
-            const farY = -(data["landmarks"][8][1] - 720/2) / (720/2) * 1.5 + 3
-            const farZ = data["landmarks"][8][2] / 200
+            const farY = -(data["landmarks"][8][1] - 720/2) / (720/2) * 1.5 + 3.5
+            const farZ = data["landmarks"][8][2] / 200 + zFactor.current
             
             // Create two position vectors: 7th landmark and 8th landmark
             const currentPoint = new THREE.Vector3(x, y, z)
