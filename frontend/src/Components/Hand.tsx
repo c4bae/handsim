@@ -1,6 +1,6 @@
 import useHandData from "../Hooks/useHandData";
 import { useFrame } from "@react-three/fiber";
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import React from "react";
 import { RigidBody, RapierRigidBody } from "@react-three/rapier";
 import HandLines from "./HandLines";
@@ -13,6 +13,7 @@ interface handLandmarkData {
 export default function Hand() {
     const handLandmarkRef = useHandData()
     const spheresRef = useRef<React.RefObject<RapierRigidBody | null>[]>([])
+    const zFactor = useRef<number>(0)
     const landmarkData = useRef<handLandmarkData | null>(null)
 
     // Build the 21 refs for each hand landmark as part of a 21-element long array
@@ -24,6 +25,17 @@ export default function Hand() {
             return spheresRef.current[i] = React.createRef() 
         })
 
+    useEffect(() => {
+        window.addEventListener("keydown", (event) => {
+            if(event.code == "KeyW") {
+                zFactor.current -= 0.1
+            }
+            else if(event.code == "KeyS") {
+                zFactor.current += 0.1
+            }
+        })
+    })
+
     useFrame(() => {
         if(handLandmarkRef.current != null && handLandmarkRef.current.landmarks != null) {
             landmarkData.current = handLandmarkRef.current
@@ -31,7 +43,7 @@ export default function Hand() {
             landmarkData.current["landmarks"].forEach((list, index) => {
                     const x = -(list[0] - 1280/2) / (1280/2) * 3
                     const y = -(list[1] - 720/2) / (720/2) * 1.5 + 3
-                    const z = list[2] / 200
+                    const z = list[2] / 200 + zFactor.current
 
                     // Update the position of each landmark using kinematic translation
                     spheresRef.current[index]?.current?.setNextKinematicTranslation({x,y,z})
@@ -49,7 +61,7 @@ export default function Hand() {
                     </mesh>
                 </RigidBody>
             )}
-            <HandLines landMarkData={landmarkData}></HandLines>
+            <HandLines landMarkData={landmarkData} zFactor={zFactor}></HandLines>
             <RaycasterSettings landMarkData={landmarkData}></RaycasterSettings>
         </>
     )
