@@ -15,7 +15,6 @@ export default function RaycasterSettings({landMarkData}: landmarkData) {
     const { raycaster, scene, camera } = useThree()
     const currentBlock = useRef<THREE.Object3D | null>(null)
     const blockFound = useRef<boolean>(false)
-    const blockPositionY = useRef<number | null>(null)
     const blocksLayer = new THREE.Layers()
 
     useEffect(() => {
@@ -24,12 +23,14 @@ export default function RaycasterSettings({landMarkData}: landmarkData) {
         blocksLayer.set(1)
 
         window.addEventListener("keydown", (event) => {
-            if(event.code == "Space" && currentBlock.current != null) {
+            if(event.code == "Space" && currentBlock.current != null && !blockFound.current) {
                 blockFound.current = true
-
                 const worldPos = new THREE.Vector3()
                 currentBlock.current.getWorldPosition(worldPos)
-                blockPositionY.current = worldPos.y
+
+            }
+            else if(event.code == "Space" && blockFound.current) {
+                blockFound.current = false
             }
         })
     }, [])
@@ -41,9 +42,9 @@ export default function RaycasterSettings({landMarkData}: landmarkData) {
             const y = -(data["landmarks"][7][1] - 720/2) / (720/2) * 1.5 + 3
             const z = data["landmarks"][7][2] / 200
 
-            const farX = (-(data["landmarks"][8][0] - 1280/2) / (1280/2) * 3 - x) * 1000
-            const farY = (-(data["landmarks"][8][1] - 720/2) / (720/2) * 1.5 + 3 - y) * 1000
-            const farZ = (data["landmarks"][8][2] / 200 - z) * 1000
+            const farX = -(data["landmarks"][8][0] - 1280/2) / (1280/2) * 3
+            const farY = -(data["landmarks"][8][1] - 720/2) / (720/2) * 1.5 + 3
+            const farZ = data["landmarks"][8][2] / 200
             
             // Create two position vectors: 7th landmark and 8th landmark
             const currentPoint = new THREE.Vector3(x, y, z)
@@ -51,9 +52,11 @@ export default function RaycasterSettings({landMarkData}: landmarkData) {
 
             // Construct normalized direction vector connecting the two landmarks
             const directionVector = new THREE.Vector3().subVectors(destinationPoint, currentPoint).normalize()
+            const extendedVector = directionVector.multiplyScalar(5000)
             
             // Set the raycaster's direction to the direction vector, starting from the 7th landmark
-            raycaster.set(currentPoint, directionVector)
+            raycaster.set(currentPoint, extendedVector)
+
             const intersects = raycaster.intersectObjects(scene.children)
 
             scene.traverse((object) => {
@@ -73,8 +76,13 @@ export default function RaycasterSettings({landMarkData}: landmarkData) {
 
             // Align selected block to same y and z position of hand
             if(blockFound.current && currentBlock.current) {
-                currentBlock.current.position.z = x
-                currentBlock.current.position.y = (y - blockPositionY.current!) * 1.5
+                const blockX = currentBlock.current.position.z
+
+                const blockRb = currentBlock.current.userData.blockRbRef.current
+                if (blockRb) {
+                    blockRb.sleep()
+                    blockRb.setTranslation({x: farX - 0.60, y: y, z: z - 1.5})
+                }
             }
         }
     })

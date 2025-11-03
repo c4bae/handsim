@@ -6,8 +6,8 @@ export default function JengaBlock(props: ThreeElements["mesh"]) {
     const blockRb = useRef<RapierRigidBody | null>(null)
 
     return (
-        <RigidBody ref={blockRb}>
-            <mesh {...props} userData={{blockRef: blockRb}} scale={[0.6,0.6,1.8]} layers={1} castShadow receiveShadow>
+        <RigidBody ref={blockRb} type="dynamic">
+            <mesh {...props} userData={{blockRbRef: blockRb}} scale={[0.6,0.6,1.8]} layers={1} castShadow receiveShadow>
                 <boxGeometry></boxGeometry>
                 <meshStandardMaterial color={"#c2974e"}></meshStandardMaterial>
             </mesh>
