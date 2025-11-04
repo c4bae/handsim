@@ -40,11 +40,11 @@ export default function RaycasterSettings({landMarkData, zFactor}: RaycasterSett
         const data = landMarkData.current
         if(data) {
             const x = -(data["landmarks"][7][0] - 1280/2) / (1280/2) * 3
-            const y = -(data["landmarks"][7][1] - 720/2) / (720/2) * 1.5 + 3.5
+            const y = (1 - data["landmarks"][7][1] / 720) * 4 + 1
             const z = data["landmarks"][7][2] / 200 + zFactor.current
 
             const farX = -(data["landmarks"][8][0] - 1280/2) / (1280/2) * 3
-            const farY = -(data["landmarks"][8][1] - 720/2) / (720/2) * 1.5 + 3.5
+            const farY = (1 - data["landmarks"][8][1] / 720) * 4 + 1
             const farZ = data["landmarks"][8][2] / 200 + zFactor.current
             
             // Create two position vectors: 7th landmark and 8th landmark

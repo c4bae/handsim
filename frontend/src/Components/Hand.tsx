@@ -42,7 +42,7 @@ export default function Hand() {
 
             landmarkData.current["landmarks"].forEach((list, index) => {
                     const x = -(list[0] - 1280/2) / (1280/2) * 3
-                    const y = -(list[1] - 720/2) / (720/2) * 1.5 + 4
+                    const y = (1 - list[1] / 720) * 4 + 1
                     const z = list[2] / 200 + zFactor.current
 
                     // Update the position of each landmark using kinematic translation
