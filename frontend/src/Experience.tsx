@@ -1,17 +1,15 @@
 import { OrbitControls } from "@react-three/drei"
-import "@react-three/fiber"
 import { Physics, RigidBody } from "@react-three/rapier"
 import Hand from "./Components/Hand"
-import Projectile from "./Components/Projectile"
 import JengaTower from "./Components/JengaTower"
+import Barrier from "./Components/Barrier"
 
 export default function Experience() {
 
     return (
         <>
             <color args={["#4a4a4a"]}attach="background"></color>
-            <OrbitControls></OrbitControls>
-            <axesHelper args={[5]}></axesHelper>
+            <OrbitControls target={[3,2.0,-3]}></OrbitControls>
 
             <Physics timeStep={"vary"}>
                 <JengaTower></JengaTower>
@@ -33,7 +31,7 @@ export default function Experience() {
                 </RigidBody>
             </Physics>
 
-
+            <Barrier></Barrier>
             <directionalLight position={[2,10,2]} intensity={5} shadow-normalBias={ 0.05 } castShadow></directionalLight>
             <directionalLight position={[-3,10,-2]} intensity={5} shadow-normalBias={ 0.05 }></directionalLight>
             <ambientLight intensity={4}></ambientLight>

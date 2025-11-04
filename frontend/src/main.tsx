@@ -13,9 +13,14 @@ createRoot(document.getElementById('root')!).render(
    <p>Only available through local hosting</p>
     {/* <HandVideo></HandVideo> */}
     {/* Enabling handvideo enables noticeable input lag */}
-    <Canvas shadows gl= {{
+    <Canvas shadows 
+            gl= {{
                 toneMapping: THREE.LinearToneMapping
-            }}>
+            }}
+            camera= {{
+              position: [-5,2,2],
+              rotation: [0,0,0]
+            }} >
         <Perf position="bottom-left"></Perf>
         <Experience></Experience>
     </Canvas>
