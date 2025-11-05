@@ -1,5 +1,6 @@
 import { useRef } from "react"
 import { useFrame } from "@react-three/fiber"
+import gsap from "gsap"
 import * as THREE from "three"
 
 export default function Barrier({crossed}: {crossed: React.RefObject<boolean>}) {
@@ -9,16 +10,49 @@ export default function Barrier({crossed}: {crossed: React.RefObject<boolean>}) 
     useFrame(() => {
         if(barrierMesh.current && barrierMaterial.current) {
             if(crossed.current) {
-                barrierMesh.current.scale.set(8, 7, 0.2)
-                barrierMesh.current.position.set(0,2.5,-1)
+                gsap.to(barrierMesh.current.scale, {
+                    duration: 0.1,
+                    x: '8',
+                    y: '7',
+                    z: '0.2',
+                    ease: 'power4.inOut',
+                })
+
+                gsap.to(barrierMesh.current.position, {
+                    duration: 0.1,
+                    x: '0',
+                    y: '2.5',
+                    z: '-1',
+                    ease: 'power4.inOut',
+                })
+                
                 barrierMaterial.current.color.set("#ff4a4a")
                 barrierMaterial.current.opacity = 0.2
             }
             else if(!crossed.current) {
-                barrierMesh.current.scale.set(8, 0.1, 0.2)
-                barrierMesh.current.position.set(0,-1,-1)
+                gsap.to(barrierMesh.current.scale, {
+                    duration: 0.1,
+                    x: '8',
+                    y: '0.1',
+                    z: '0.2',
+                    ease: 'power4.inOut',
+                })
+
+                gsap.to(barrierMesh.current.position, {
+                    duration: 0.1,
+                    x: '0',
+                    y: '-1',
+                    z: '-1',
+                    ease: 'power4.inOut',
+                })
+
+                gsap.to(barrierMaterial.current, {
+                    duration: 0.1,
+                    opacity: '1',
+                    ease: 'power4.inOut',
+                })
+
                 barrierMaterial.current.color.set("#64ff67")
-                barrierMaterial.current.opacity = 1
             }
         }
     })
