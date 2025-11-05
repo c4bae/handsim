@@ -5,6 +5,7 @@ import React from "react";
 import { RigidBody, RapierRigidBody } from "@react-three/rapier";
 import HandLines from "./HandLines";
 import RaycasterSettings from "./RaycasterSettings"
+import Barrier from "./Barrier";
 
 interface handLandmarkData {
     landmarks: number[][]
@@ -15,6 +16,7 @@ export default function Hand() {
     const spheresRef = useRef<React.RefObject<RapierRigidBody | null>[]>([])
     const zFactor = useRef<number>(0)
     const landmarkData = useRef<handLandmarkData | null>(null)
+    const crossed = useRef<boolean>(false)
 
     // Build the 21 refs for each hand landmark as part of a 21-element long array
     // Note that we donʻt place this code in a useEffect hook as it occurs after the first render, 
@@ -48,6 +50,13 @@ export default function Hand() {
                     // Update the position of each landmark using kinematic translation
                     spheresRef.current[index]?.current?.setNextKinematicTranslation({x,y,z})
             })
+
+            if(landmarkData.current["landmarks"][0][2] / 200 + zFactor.current > -0.5) {
+                crossed.current = false
+            }
+            else {
+                crossed.current = true
+            }
         }
     })
     
@@ -63,6 +72,7 @@ export default function Hand() {
             )}
             <HandLines landMarkData={landmarkData} zFactor={zFactor}></HandLines>
             <RaycasterSettings landMarkData={landmarkData} zFactor={zFactor}></RaycasterSettings>
+            <Barrier crossed={crossed}></Barrier>
         </>
     )
 }

@@ -2,7 +2,6 @@ import { OrbitControls } from "@react-three/drei"
 import { Physics, RigidBody } from "@react-three/rapier"
 import Hand from "./Components/Hand"
 import JengaTower from "./Components/JengaTower"
-import Barrier from "./Components/Barrier"
 
 export default function Experience() {
 
@@ -31,7 +30,6 @@ export default function Experience() {
                 </RigidBody>
             </Physics>
 
-            <Barrier></Barrier>
             <directionalLight position={[2,10,2]} intensity={5} shadow-normalBias={ 0.05 } castShadow></directionalLight>
             <directionalLight position={[-3,10,-2]} intensity={5} shadow-normalBias={ 0.05 }></directionalLight>
             <ambientLight intensity={4}></ambientLight>

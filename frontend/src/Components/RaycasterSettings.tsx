@@ -77,7 +77,6 @@ export default function RaycasterSettings({landMarkData, zFactor}: RaycasterSett
 
             // Align selected block to same y and z position of hand
             if(blockFound.current && currentBlock.current) {
-                const blockX = currentBlock.current.position.z
 
                 const blockRb = currentBlock.current.userData.blockRbRef.current
                 if (blockRb) {
