@@ -1,10 +1,16 @@
-import { OrbitControls } from "@react-three/drei"
+import { OrbitControls, useTexture } from "@react-three/drei"
 import { Physics, RigidBody } from "@react-three/rapier"
+import * as THREE from "three"
 import Hand from "./Components/Hand"
 import JengaTower from "./Components/JengaTower"
 
 export default function Experience() {
+    const floorTexture = useTexture("Assets/grid.png")
 
+    floorTexture.repeat.set(20, 20)
+
+    floorTexture.wrapS = THREE.RepeatWrapping
+    floorTexture.wrapT = THREE.RepeatWrapping
     return (
         <>
             <color args={["#4a4a4a"]}attach="background"></color>
@@ -23,9 +29,9 @@ export default function Experience() {
                 </RigidBody> */}
 
                 <RigidBody type={"fixed"}>
-                    <mesh position-y={-1} scale={50} rotation-x={-Math.PI/2} receiveShadow>
-                        <planeGeometry></planeGeometry>
-                        <meshStandardMaterial color={"#0b0b0b"}> </meshStandardMaterial>
+                    <mesh position-y={-1} rotation-x={-Math.PI/2} receiveShadow>
+                        <planeGeometry args={[200, 200]}></planeGeometry>
+                        <meshStandardMaterial map={floorTexture}> </meshStandardMaterial>
                     </mesh>
                 </RigidBody>
             </Physics>
