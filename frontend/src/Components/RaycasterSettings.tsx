@@ -63,7 +63,7 @@ export default function RaycasterSettings({landMarkData, zFactor}: RaycasterSett
             scene.traverse((object) => {
                 if(object.layers.test(blocksLayer)) {
                     if('material' in object) {
-                        object.material.color.set("#c2974e")
+                        object.material.color.set("#f2d1a2")
                     }
                 }
             })

@@ -15,11 +15,12 @@ createRoot(document.getElementById('root')!).render(
     {/* Enabling handvideo enables noticeable input lag */}
     <Canvas shadows 
             gl= {{
-                toneMapping: THREE.LinearToneMapping
+                toneMapping: THREE.NeutralToneMapping,
+                toneMappingExposure: 2,
             }}
             camera= {{
-              position: [-5,2,2],
-              rotation: [0,0,0]
+              position: [3,5,5],
+              rotation: [0, Math.PI/4, 0]
             }} >
         <Perf position="bottom-left"></Perf>
         <Experience></Experience>

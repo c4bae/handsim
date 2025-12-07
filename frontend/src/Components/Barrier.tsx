@@ -11,7 +11,7 @@ export default function Barrier({crossed}: {crossed: React.RefObject<boolean>}) 
         if(barrierMesh.current && barrierMaterial.current) {
             if(crossed.current) {
                 gsap.to(barrierMesh.current.scale, {
-                    duration: 0.1,
+                    duration: 0.2,
                     x: '8',
                     y: '7',
                     z: '0.2',
@@ -19,7 +19,7 @@ export default function Barrier({crossed}: {crossed: React.RefObject<boolean>}) 
                 })
 
                 gsap.to(barrierMesh.current.position, {
-                    duration: 0.1,
+                    duration: 0.2,
                     x: '0',
                     y: '2.5',
                     z: '-1',
@@ -31,7 +31,7 @@ export default function Barrier({crossed}: {crossed: React.RefObject<boolean>}) 
             }
             else if(!crossed.current) {
                 gsap.to(barrierMesh.current.scale, {
-                    duration: 0.1,
+                    duration: 0.2,
                     x: '8',
                     y: '0.1',
                     z: '0.2',
@@ -39,7 +39,7 @@ export default function Barrier({crossed}: {crossed: React.RefObject<boolean>}) 
                 })
 
                 gsap.to(barrierMesh.current.position, {
-                    duration: 0.1,
+                    duration: 0.2,
                     x: '0',
                     y: '-1',
                     z: '-1',
@@ -47,12 +47,12 @@ export default function Barrier({crossed}: {crossed: React.RefObject<boolean>}) 
                 })
 
                 gsap.to(barrierMaterial.current, {
-                    duration: 0.1,
+                    duration: 0.2,
                     opacity: '1',
                     ease: 'power4.inOut',
                 })
 
-                barrierMaterial.current.color.set("#64ff67")
+                barrierMaterial.current.color.set("#a4f8a5")
             }
         }
     })
@@ -61,7 +61,7 @@ export default function Barrier({crossed}: {crossed: React.RefObject<boolean>}) 
     return (
         <mesh ref={barrierMesh} position={[0,-1,-1]} scale={[8, 0.1, 0.2]}>
             <boxGeometry></boxGeometry>
-            <meshStandardMaterial ref={barrierMaterial} color={"#64ff67"} opacity={1} transparent></meshStandardMaterial>
+            <meshStandardMaterial ref={barrierMaterial} color={"#a4f8a5"} opacity={1} transparent></meshStandardMaterial>
         </mesh>
     )
 }

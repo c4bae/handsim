@@ -9,7 +9,7 @@ export default function JengaBlock(props: ThreeElements["mesh"]) {
         <RigidBody ref={blockRb} type="dynamic">
             <mesh {...props} userData={{blockRbRef: blockRb}} scale={[0.6,0.6,1.8]} layers={1} castShadow receiveShadow>
                 <boxGeometry></boxGeometry>
-                <meshStandardMaterial color={"#c2974e"}></meshStandardMaterial>
+                <meshStandardMaterial color={"#f2d1a2"}></meshStandardMaterial>
             </mesh>
         </RigidBody>
     )
